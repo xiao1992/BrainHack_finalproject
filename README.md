@@ -1,12 +1,12 @@
 # Opening the Black Box: Interpretable Emotion Recognition from Consumer-based EEG
 
 ## Overview
-Most EEG emotion recognition systems focus solely on achieving high classification accuracy, often using black-box models with little insight into why certain predictions are made. However, for practical deployment in mental health, education, and user-adaptive systems, interpretability is crucial. This project uses a Kaggle dataset titled "EEG Brainwave Dataset: Feeling Emotions" and introduces an explainable AI pipeline to identify which brainwave features and electrode locations contribute most to different emotional states.
+This project builds on the original paper “Mental Emotional Sentiment Classification with an EEG-based Brain-machine Interface” by Bird et al. (2019) who published the Kaggle dataset titled "EEG Brainwave Dataset: Feeling Emotions", which achieved high classification accuracy of emotional states using EEG data and machine learning methods. One of their striking findings was that even a simple OneR classifier using the AF7 electrode's mean value could yield 85% accuracy, suggesting that certain EEG features alone are highly predictive of emotional state. However, their focus was primarily on maximizing classification performance rather than interpreting what drives those predictions.This project uses the same Kaggle dataset and introduces an explainable AI pipeline to identify which brainwave features and electrode locations contribute most to different emotional states.
 
 ---
 
 ## Project Motivation
-This project aims to move beyond traditional emotion classification by introducing model interpretability into the analysis of EEG data. The goal is not only to classify emotional states (positive, neutral, negative) but also to visualize and understand the key neural features influencing the prediction. This is practical for building transparent emotion-aware applications.
+Most EEG emotion recognition systems focus solely on achieving high classification accuracy, often using black-box models with little insight into why certain predictions are made. However, for practical deployment in mental health, education, and user-adaptive systems, interpretability is crucial. This project aims to move beyond traditional emotion classification by introducing model interpretability into the analysis of EEG data. The goal is not only to classify emotional states (positive, neutral, negative) but also to visualize and understand the key neural features influencing the prediction. This is practical for building transparent emotion-aware applications.
 ![Emotion Regulation](https://www.hopebridge.com/wp-content/uploads/2022/05/Understand-Emotion-Tips-Kids-Autism-Hopebridge.jpg)
 
 ### Key Innovations:
@@ -23,8 +23,10 @@ Classical studies such as Koelstra et al. (2012) with the DEAP dataset laid foun
 ## Dataset: Kaggle "EEG Brainwave Dataset: Feeling Emotions"
 This dataset was collected using a Muse EEG headband (TP9, AF7, AF8, TP10) across emotional stimuli (music tracks) designed to trigger positive, neutral, and negative emotional states. Two participants (1 male, 1 female) were recorded for 3 minutes per state. An additional 6 minutes of resting-state EEG was recorded. Data is labeled based on the emotional condition during each recording segment.
 
-### Scope & Constraints
+### Scope & Deliverables
 Given the limited 3-week timeframe for the BrainHack school project, we chose a small dataset but with a complete scope of a project that includes compare different ML models and explore a reproducible baseline for interpretable EEG-based emotion models.
+
+In terms of deliverables, the project can produce a variety of insightful outputs including electrode-wise feature importance heatmaps, frequency band relevance rankings, and global versus local explanation visualizations (i.e why one specific film clip elicited a certain classification). The pipeline may also generate interpretable decision rules or prototypes that summarize emotion prediction logic.
 
 ---
 
