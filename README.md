@@ -1,80 +1,70 @@
-# Modeling Emotion Regulation Patterns with Contrastive Learning on Low-Cost EEG
+# Interpretable Emotion Recognition from Low-Cost EEG Using Explainable AI
 
 ## Overview
-Most EEG emotion recognition focuses on classifying current emotional states but emotion regulation is key for mental health and less studied. We will use a Kaggle dataset called "EEG Brainwave Dataset: Feeling Emotions" that allows a lightweight, low-cost approach using consumer EEG.
+Most EEG emotion recognition systems focus solely on achieving high classification accuracy, often using black-box models with little insight into why certain predictions are made. However, for practical deployment in mental health, education, and user-adaptive systems, interpretability is crucial. This project uses a Kaggle dataset titled "EEG Brainwave Dataset: Feeling Emotions" and introduces an explainable AI pipeline to identify which brainwave features and electrode locations contribute most to different emotional states.
 
 ---
 
 ## Project Motivation
-This project aims to go beyond traditional emotion classification by examing an individual's **ability to regulate emotions** from EEG signals during emotional stimulation. Introduce contrastive learning to model changes in EEG during different stimuli. Instead of just classifying "happy vs. sad", the goal is to infer whether the subject shows signs of emotional regulation over time (i.e decreasing arousal, stabilizing valence).
-![Emotion Regulation](https://illuminatingyou.com/wp-content/uploads/2023/10/AdobeStock_647250235-scaled.jpeg)
+This project aims to move beyond traditional emotion classification by introducing model interpretability into the analysis of EEG data. The goal is not only to classify emotional states (positive, neutral, negative) but also to visualize and understand the key neural features influencing the prediction. This is practical for building transparent emotion-aware applications.
+![Emotion Regulation](https://www.hopebridge.com/wp-content/uploads/2022/05/Understand-Emotion-Tips-Kids-Autism-Hopebridge.jpg)
 
 ### Key Innovations:
 - Consumer-designed EEG for emotional modeling (Muse Headband).
-- Contrastive learning on time-windowed features (i.e SimCLR).
-- Predict emotion regulation success based on EEG dynamics (i.e does valence/arousal stabilize over time?).
-- A practical use case or conclusion: could someone use music to self-soothe or regulate emotion?
+- Integration of explainable AI (XAI) techniques using SHAP and LIME.
+- Identification of feature-level and electrode-level importance in emotion prediction.
+- Visualization of global vs. local emotional predictors.
+- A reproducible baseline for interpretable EEG-based emotion models.
 
-Contrastive learning has recently shown strong performance in EEG-based emotion recognition. It functions by teaching models to distinguish between positive pairs (same label or segment) and negative pairs (different labels) of data. Recent studies demonstrate that integrating Graph Convolutional Networks (GCNs) into contrastive learning significantly enhances performance by encoding spatial dependencies between electrodes. For example, a 2022 paper titled "Self-supervised Group Meiosis Contrastive Learning for EEG-Based Emotion Recognition" achieved over 95% accuracy on the DEAP dataset using GCNs and contrastive learning jointly.
-
-Another innovation is PhysioSync, which applies temporal and cross-modal contrastive learning to synchronize EEG with physiological signals like GSR or EMG, furthure improving emotional representation learning across time and modality in a 2025 study titled "PhysioSync: Temporal and Cross-Modal Contrastive Learning Inspired by Physiological Synchronization for EEG-Based Emotion Recognition".
+Classical studies such as Koelstra et al. (2012) with the DEAP dataset laid foundational work by correlating EEG with self-reported valence and arousal. However, many subsequent studies focused on improving classification accuracy without addressing the interpretability of the results. For instance, deep learning approaches, while powerful, often function as black boxes and fail to offer insight into which neural patterns contribute to specific emotional responses. Explainable AI has emerged as a promising solution to bridge the gap. SHAP, introduced by Lundberg and Lee (2017), provides consistent explanations for complex machine learning models, making it an ideal tool for EEG applications where transparency is unclear. In recent EEG-based emotion recognition work, SHAP has been used to identify key frequency bands and electrode contributions, enhancing the credibility of these systems for clinical or user-facing applications.
 
 ---
 
 ## Dataset: Kaggle "EEG Brainwave Dataset: Feeling Emotions"
-This dataset, hosted on Kaggle, was collected using a Muse EEG headband while 15 participants listened to audio tracks designed to evoke different emotional responses. Participants listened to 40 music clips designed to span a range of valence (pleasant–unpleasant) and arousal (calm–exciting) emotional states. EEG signals were recorded during each session using the Muse 2 headband, which provides 4 EEG channels: TP9, AF7, AF8, and TP10 (temporal and frontal).
-
-After listening to each music clip, participants rated their emotional responses using self-assessment scales:
-Valence: How pleasant/unpleasant they felt during the music (scale: 0 to 1, where 0 = unpleasant, 1 = pleasant).
-Arousal: How activated or stimulated they felt (scale: 0 to 1, where 0 = calm, 1 = highly aroused).
+This dataset was collected using a Muse EEG headband (TP9, AF7, AF8, TP10) across emotional stimuli (music tracks) designed to trigger positive, neutral, and negative emotional states. Two participants (1 male, 1 female) were recorded for 3 minutes per state. An additional 6 minutes of resting-state EEG was recorded. Data is labeled based on the emotional condition during each recording segment.
 
 ---
 
 ## Assumptions for Labeling
-We hypothesize emotion regulation based on patterns in self-report and EEG:
--	Low arousal with high valence after a high-arousal stimulus → possible regulation
--	Compare early vs. late EEG segments to infer downregulation over time
+We treat the labeled segments ("positive", "neutral", "negative") as ground truth emotional states and train classifiers accordingly. EEG features are extracted from these segments using frequency-domain analysis. We assume:
+- Band power changes correlate with emotional states (i.e more alpha in relaxed states).
+- Certain electrodes (like AF7/AF8) capture emotion-related activity more effectively.
 
 ---
 
 ## Scope & Constraints
-Given the limited 3-week timeframe for the BrainHack school project, I will narrow down the scope to: 1) 5 participants (instead of 15) with complete and high-quality recordings, 2) 10 songs per participant (intead of 40) with clearer valence or arousal emotional labels, 3) a simplified contrastive learning framework such as SimCLR, 4) lightweight MLP classifiers will then be trained on the learned embeddings. 
-
-The final goal is to demonstrate that contrastive learning can enhance EEG feature representations for emotion-related tasks, providing a proof-of-concept for further scaling.
+Given the limited 3-week timeframe for the BrainHack school project, we chose a small dataset but with a complete scope of a project that includes compare different ML models and explore a reproducible baseline for interpretable EEG-based emotion models.
 
 ---
 
 ## Methodology
 ### 1. **EEG Preprocessing**
-Filter, ICA, normalization; segment into time-locked windows of 2-5s; Get Power Spectral Density (PSD) for each segment and apply augmentation methods for contrastive training. 
+Filter, ICA, normalization; segment into time-locked windows of 2-5s; for each window, we compute power spectral density (PSD) values for all frequency bands at each of the four electrodes (TP9, AF7, AF8, TP10). These PSD values serve as the input features for our machine learning models. To ensure comparability across subjects and sessions, we normalize all features using z-score normalization within each subject.
 
-### 2. **Contrastive Learning**
-Framework: SimCLR
-Loss: NT-Xent (contrastive loss)
-Apply contrastive learning (SimCLR) to learn emotionally discriminative EEG features. Learn embeddings via contrastive loss; predict with simple classifier. The contrastive model uses a small neural network backbone (i.e a few convolutional or dense layers) trained with NT-Xent loss. After pretraining, the learned embeddings are fed into a simple MLP classifier that predicts the participant's emotional regulation.
+### 2. **Model Training**
+We train classification models to predict the emotional state (positive, neutral, or negative) based on the extracted EEG features. Our baseline models include Random Forest and XGBoost classifiers, which are well-suited for small tabular datasets and provide feature importance metrics. Support Vector Machines (SVM) will also be tested for performance benchmarking. We evaluate each model using k-fold cross-validation, and track classification performance using accuracy, F1-score, and ROC-AUC. The final trained model is selected based on its generalization performance.
 
-### 3. **Classifier / Prediction**
-Use the embedding results to train a regression or classification model to predict emotional regulation performance. We will use 1) MLP on Contrastive Embeddings, 2) Logistic/Linear Regression for the baseline (set a performance floor to beat with deep models), 3) SVM on embeddings. For classification, we use the assumptions to categorize regulation success.
-
-**Emotion Regulation Score**
-Based on self-report + EEG mismatch / time dynamics.
+### 3. **Apply Explainer**
+Once a model is trained, we turn to explainable AI (XAI) methods to interpret the classifier's decision-making process. We apply SHAP (SHapley Additive exPlanations). SHAP allows us to examine both global feature importance (which features contribute most to emotion classification overall) and local explanations for individual EEGs. We generate SHAP plots to visualize the distribution and magnitude of feature contributions and to investigate how features influence predictions toward particular emotional classes. 
 
 ### 4. **Evaluation Metrics**
-Evaluation of the models include using F1 score, accuracy, ROC-AUC. Will also conduct visualizations such as t-SNE/UMAP.
+Finally, we visualize the learned EEG feature space using t-SNE or UMAP, which allow us to examine how well the emotional states cluster in the feature space. We also construct heatmaps to represent the importance of each electrode-frequency pair, offering intuitive insights into which brain regions and frequency bands are most relevant for emotion detection.
 
 ---
 
 ## Relevant Works
-*X. Shen, X. Liu, X. Hu, D. Zhang and S. Song, "Contrastive Learning of Subject-Invariant EEG Representations for Cross-Subject Emotion Recognition," in IEEE Transactions on Affective Computing, vol. 14, no. 3, pp. 2496-2511, 1 July-Sept. 2023, doi: 10.1109/TAFFC.2022.3164516.
-*Zhang, Hong, et al. "PhysioSync: Temporal and Cross-Modal Contrastive Learning Inspired by Physiological Synchronization for EEG-Based Emotion Recognition." 2025. arXiv:2504.17163.
+*Birdy654. (2022). EEG Brainwave Dataset: Feeling Emotions [Data set]. Kaggle. https://www.kaggle.com/datasets/birdy654/eeg-brainwave-dataset-feeling-emotions
+*Koelstra, S., Muhl, C., Soleymani, M., Lee, J. S., Yazdani, A., Ebrahimi, T., ... & Patras, I. (2012). DEAP: A Database for Emotion Analysis Using Physiological Signals. IEEE Transactions on Affective Computing, 3(1), 18–31. https://doi.org/10.1109/T-AFFC.2011.15
+*Lundberg, S. M., & Lee, S.-I. (2017). A Unified Approach to Interpreting Model Predictions. Advances in Neural Information Processing Systems, 30, 4765–4774. https://proceedings.neurips.cc/paper_files/paper/2017/file/8a20a8621978632d76c43dfd28b67767-Paper.pdf
 
 ---
 
 ## Future Work
-Incorporate peripheral modalities (GSR, EMG) into contrastive framework;
-Expand to all 32 subjects and full stimulus set (DEAP dataset);
-Include GCNs and PhsioSync (cross-modal & temporal contrastive learning) in the model training;
-Explore methods (such as meditaiton, journaling) to help with emotion awareness.
+Incorporate real-time explainability for live feedback applications.
+Expand to more subjects using full DEAP datasets.
+Combine EEG with peripheral biosignals such as GSR, MEG for multimodal explainability.
+Integrate domain-specific knowledge in cognitive neuroscience into feature selection.
+
 ![Emotion Regulation](https://bewelltherapygroup.org/wp-content/uploads/2024/03/Untitled-design-67.png)
 
 ---
