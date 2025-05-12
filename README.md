@@ -1,4 +1,4 @@
-# Interpretable Emotion Recognition from Low-Cost EEG Using Explainable AI
+# Opening the Black Box: Interpretable Emotion Recognition from Consumer-based EEG
 
 ## Overview
 Most EEG emotion recognition systems focus solely on achieving high classification accuracy, often using black-box models with little insight into why certain predictions are made. However, for practical deployment in mental health, education, and user-adaptive systems, interpretability is crucial. This project uses a Kaggle dataset titled "EEG Brainwave Dataset: Feeling Emotions" and introduces an explainable AI pipeline to identify which brainwave features and electrode locations contribute most to different emotional states.
