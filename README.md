@@ -1,4 +1,4 @@
-# Opening the Black Box: Interpretable Emotion Recognition from Consumer-based EEG 🤭😢😠😍
+# Opening the Black Box: Interpretable Emotion Recognition from Consumer-based EEG 😐😄😢😠😍
 
 ## Overview
 This project builds on the original paper “Mental Emotional Sentiment Classification with an EEG-based Brain-machine Interface” by Bird et al. (2019) who published the Kaggle dataset titled "EEG Brainwave Dataset: Feeling Emotions", which achieved high classification accuracy of emotional states using EEG data and machine learning methods. One of their striking findings was that even a simple OneR classifier using the AF7 electrode's mean value could yield 85% accuracy, suggesting that certain EEG features alone are highly predictive of emotional state. However, their focus was primarily on maximizing classification performance rather than interpreting what drives those predictions.This project uses the same Kaggle dataset and introduces an explainable AI pipeline to identify which brainwave features and electrode locations contribute most to different emotional states.
