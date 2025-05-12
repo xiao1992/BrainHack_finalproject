@@ -12,8 +12,7 @@ This project aims to move beyond traditional emotion classification by introduci
 ### Key Innovations:
 - Consumer-designed EEG for emotional modeling (Muse Headband).
 - Integration of explainable AI (XAI) techniques using SHAP and LIME.
-- Identification of feature-level and electrode-level importance in emotion prediction.
-- Visualization of global vs. local emotional predictors.
+- Identification of feature-level and electrode-level importance in emotion prediction & visualization of global v.s local emotional predictors.
 - A reproducible baseline for interpretable EEG-based emotion models.
 
 Classical studies such as Koelstra et al. (2012) with the DEAP dataset laid foundational work by correlating EEG with self-reported valence and arousal. However, many subsequent studies focused on improving classification accuracy without addressing the interpretability of the results. For instance, deep learning approaches, while powerful, often function as black boxes and fail to offer insight into which neural patterns contribute to specific emotional responses. Explainable AI has emerged as a promising solution to bridge the gap. SHAP, introduced by Lundberg and Lee (2017), provides consistent explanations for complex machine learning models, making it an ideal tool for EEG applications where transparency is unclear. In recent EEG-based emotion recognition work, SHAP has been used to identify key frequency bands and electrode contributions, enhancing the credibility of these systems for clinical or user-facing applications.
@@ -23,17 +22,13 @@ Classical studies such as Koelstra et al. (2012) with the DEAP dataset laid foun
 ## Dataset: Kaggle "EEG Brainwave Dataset: Feeling Emotions"
 This dataset was collected using a Muse EEG headband (TP9, AF7, AF8, TP10) across emotional stimuli (music tracks) designed to trigger positive, neutral, and negative emotional states. Two participants (1 male, 1 female) were recorded for 3 minutes per state. An additional 6 minutes of resting-state EEG was recorded. Data is labeled based on the emotional condition during each recording segment.
 
+### Scope & Constraints
+Given the limited 3-week timeframe for the BrainHack school project, we chose a small dataset but with a complete scope of a project that includes compare different ML models and explore a reproducible baseline for interpretable EEG-based emotion models.
+
 ---
 
 ## Assumptions for Labeling
-We treat the labeled segments ("positive", "neutral", "negative") as ground truth emotional states and train classifiers accordingly. EEG features are extracted from these segments using frequency-domain analysis. We assume:
-- Band power changes correlate with emotional states (i.e more alpha in relaxed states).
-- Certain electrodes (like AF7/AF8) capture emotion-related activity more effectively.
-
----
-
-## Scope & Constraints
-Given the limited 3-week timeframe for the BrainHack school project, we chose a small dataset but with a complete scope of a project that includes compare different ML models and explore a reproducible baseline for interpretable EEG-based emotion models.
+We treat the labeled segments ("positive", "neutral", "negative") as ground truth emotional states and train classifiers accordingly. EEG features are extracted from these segments using frequency-domain analysis. We assume: 1) band power changes correlate with emotional states (i.e more alpha in relaxed states); 2) certain electrodes (like AF7/AF8) capture emotion-related activity more effectively.
 
 ---
 
