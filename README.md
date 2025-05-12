@@ -12,7 +12,8 @@ This project aims to move beyond traditional emotion classification by introduci
 ### Key Innovations:
 - Consumer-designed EEG for emotional modeling (Muse Headband).
 - Integration of explainable AI (XAI) techniques using SHAP and LIME.
-- Identification of feature-level and electrode-level importance in emotion prediction & visualization of global v.s local emotional predictors.
+- Identification of feature-level and electrode-level importance in emotion prediction.
+- Visualization of global v.s local emotional predictors.
 - A reproducible baseline for interpretable EEG-based emotion models.
 
 Classical studies such as Koelstra et al. (2012) with the DEAP dataset laid foundational work by correlating EEG with self-reported valence and arousal. However, many subsequent studies focused on improving classification accuracy without addressing the interpretability of the results. For instance, deep learning approaches, while powerful, often function as black boxes and fail to offer insight into which neural patterns contribute to specific emotional responses. Explainable AI has emerged as a promising solution to bridge the gap. SHAP, introduced by Lundberg and Lee (2017), provides consistent explanations for complex machine learning models, making it an ideal tool for EEG applications where transparency is unclear. In recent EEG-based emotion recognition work, SHAP has been used to identify key frequency bands and electrode contributions, enhancing the credibility of these systems for clinical or user-facing applications.
