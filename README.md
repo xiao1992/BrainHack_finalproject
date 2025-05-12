@@ -6,12 +6,12 @@ Most EEG emotion recognition focuses on classifying current emotional states but
 ---
 
 ## Project Motivation
-This project aims to go beyond traditional emotion classification by examing an individual's **ability to regulate emotions** from EEG signals during emotional stimulation. Introduce contrastive learning to model changes in EEG during different stimuli. Instead of just classifying "happy vs. sad", the goal is to infer whether the subject shows signs of emotional regulation over time (e.g., decreasing arousal, stabilizing valence).
+This project aims to go beyond traditional emotion classification by examing an individual's **ability to regulate emotions** from EEG signals during emotional stimulation. Introduce contrastive learning to model changes in EEG during different stimuli. Instead of just classifying "happy vs. sad", the goal is to infer whether the subject shows signs of emotional regulation over time (i.e decreasing arousal, stabilizing valence).
 ![Emotion Regulation](https://illuminatingyou.com/wp-content/uploads/2023/10/AdobeStock_647250235-scaled.jpeg)
 
 ### Key Innovations:
 - Consumer-designed EEG for emotional modeling (Muse Headband).
-- Contrastive learning on time-windowed features (e.g., SimCLR or TS-TCC).
+- Contrastive learning on time-windowed features (i.e SimCLR).
 - Predict emotion regulation success based on EEG dynamics (i.e does valence/arousal stabilize over time?).
 - A practical use case or conclusion: could someone use music to self-soothe or regulate emotion?
 
@@ -74,7 +74,7 @@ Evaluation of the models include using F1 score, accuracy, ROC-AUC. Will also co
 
 ## Future Work
 Incorporate peripheral modalities (GSR, EMG) into contrastive framework;
-Expand to all 32 subjects and full stimulus set;
+Expand to all 32 subjects and full stimulus set (DEAP dataset);
 Include GCNs and PhsioSync (cross-modal & temporal contrastive learning) in the model training;
 Explore methods (such as meditaiton, journaling) to help with emotion awareness.
 ![Emotion Regulation](https://bewelltherapygroup.org/wp-content/uploads/2024/03/Untitled-design-67.png)
