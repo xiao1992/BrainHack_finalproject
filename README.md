@@ -10,7 +10,7 @@ This project aims to go beyond traditional emotion classification by examing an 
 ![Emotion Regulation](https://illuminatingyou.com/wp-content/uploads/2023/10/AdobeStock_647250235-scaled.jpeg)
 
 ### Key Innovations:
-- Consumer-designed EEG for emotional modeling (Muse).
+- Consumer-designed EEG for emotional modeling (Muse Headband).
 - Contrastive learning on time-windowed features (e.g., SimCLR or TS-TCC).
 - Predict emotion regulation success based on EEG dynamics (i.e does valence/arousal stabilize over time?).
 - A practical use case or conclusion: could someone use music to self-soothe or regulate emotion?
