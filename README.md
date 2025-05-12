@@ -1,5 +1,3 @@
-![Emotion Regulation](https://i0.wp.com/spachina.com/wp-content/uploads/2022/04/QQ%E6%88%AA%E5%9B%BE20220121135743.jpg?fit=1024%2C614&ssl=1)
-
 # Modeling Emotion Regulation Patterns with Contrastive Learning on Low-Cost EEG
 
 ## Overview
