@@ -59,9 +59,7 @@ Use the embedding results to train a regression or classification model to predi
 **Emotion Regulation Score**
 Based on self-report + EEG mismatch / time dynamics.
 
----
-
-## 4. **Evaluation Metrics**
+### 4. **Evaluation Metrics**
 Evaluation of the models include using F1 score, accuracy, ROC-AUC. Will also conduct visualizations such as t-SNE/UMAP.
 
 ---
