@@ -1,4 +1,6 @@
-# Opening the Black Box: Interpretable Emotion Recognition from Consumer-based EEG 😐😄😢😠😍
+# Opening the Black Box: Interpretable Emotion Recognition from Consumer-based EEG
+
+![Emotion Regulation](https://www.hopebridge.com/wp-content/uploads/2022/05/Understand-Emotion-Tips-Kids-Autism-Hopebridge.jpg)
 
 ## Overview
 This project builds on the original paper “Mental Emotional Sentiment Classification with an EEG-based Brain-machine Interface” by Bird et al. (2019) who published the Kaggle dataset titled "EEG Brainwave Dataset: Feeling Emotions", which achieved high classification accuracy of emotional states using EEG data and machine learning methods. One of their striking findings was that even a simple OneR classifier using the AF7 electrode's mean value could yield 85% accuracy, suggesting that certain EEG features alone are highly predictive of emotional state. However, their focus was primarily on maximizing classification performance rather than interpreting what drives those predictions.This project uses the same Kaggle dataset and introduces an explainable AI pipeline to identify which brainwave features and electrode locations contribute most to different emotional states.
@@ -7,7 +9,6 @@ This project builds on the original paper “Mental Emotional Sentiment Classifi
 
 ## Project Motivation
 Most EEG emotion recognition systems focus solely on achieving high classification accuracy, often using black-box models with little insight into why certain predictions are made. However, for practical deployment in mental health, education, and user-adaptive systems, interpretability is crucial. This project aims to move beyond traditional emotion classification by introducing model interpretability into the analysis of EEG data. The goal is not only to classify emotional states (positive, neutral, negative) but also to visualize and understand the key neural features influencing the prediction. This is practical for building transparent emotion-aware applications.
-![Emotion Regulation](https://www.hopebridge.com/wp-content/uploads/2022/05/Understand-Emotion-Tips-Kids-Autism-Hopebridge.jpg)
 
 ### Key Innovations:
 - Consumer-designed EEG for emotional modeling (Muse Headband).
